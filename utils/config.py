@@ -7,6 +7,7 @@ load_dotenv()
 
 class Data:
     TOKEN = os.getenv("TOKEN")
+    Register_url = "http://localhost:8001/user/register/"
 
 settings = Data()
 

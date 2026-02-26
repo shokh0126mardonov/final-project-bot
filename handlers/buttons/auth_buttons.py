@@ -1,36 +1,36 @@
-from telegram import InlineKeyboardButton,InlineKeyboardMarkup,ReplyKeyboardMarkup,KeyboardButton
-
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
 
 
 def register_button():
     keyboard = [
-        [InlineKeyboardButton(text="Register",callback_data="register_page")]
+        [InlineKeyboardButton(text="📝 Ro‘yxatdan o‘tish", callback_data="register_page")]
     ]
-
     return InlineKeyboardMarkup(keyboard)
 
 
 def login_button():
     keyboard = [
-        [InlineKeyboardButton(text="Login",callback_data="login_page")]
+        [InlineKeyboardButton(text="🔐 Tizimga kirish", callback_data="login_page")]
     ]
-
     return InlineKeyboardMarkup(keyboard)
 
 
 def send_contact():
     keyboard = [
-        [KeyboardButton("contact yuborish",request_contact=True)]
+        [KeyboardButton("📱 Telefon raqamni yuborish", request_contact=True)]
     ]
-
     return ReplyKeyboardMarkup(
-        keyboard,resize_keyboard=True,one_time_keyboard=True
+        keyboard,
+        resize_keyboard=True,
+        one_time_keyboard=True
     )
 
 
 def confirm_button():
     keyboard = [
-        [InlineKeyboardButton(text="Tasdiqlash",callback_data="confirm_true"),InlineKeyboardButton(text="Qaytadan",callback_data="confirm_false")]
+        [
+            InlineKeyboardButton(text="✅ Tasdiqlash", callback_data="confirm_true"),
+            InlineKeyboardButton(text="🔄 Qayta kiritish", callback_data="confirm_false")
+        ]
     ]
-
     return InlineKeyboardMarkup(keyboard)
