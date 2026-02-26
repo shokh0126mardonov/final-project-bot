@@ -7,7 +7,7 @@ from telegram.ext import (
     CallbackQueryHandler,
 )
 
-from handlers.command_handlers import start_bot
+from handlers.command_handlers import start_bot,help_bot
 from handlers.message_handlers import (
     register_handler,
     get_avatar_image,
@@ -23,6 +23,8 @@ def main():
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start_bot))
+    dispatcher.add_handler(CommandHandler("help", help_bot))
+
 
     register = ConversationHandler(
         entry_points=[

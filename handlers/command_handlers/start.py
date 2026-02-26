@@ -9,14 +9,16 @@ Register_url = "http://localhost:8001/user/register/"
 
 def start_bot(update:Update,context:CallbackContext):
     chat_id = update.effective_user.id
+    try:
+        response = requests.get(url=Register_url,params={"chat_id":chat_id})
 
-    response = requests.get(url=Register_url,params={"chat_id":chat_id})
-
-    if response.json()['status']:
-        update.message.reply_text(
-            "Login",reply_markup=login_button()
-        )
-    else:
-        update.message.reply_text(
-            "Register",reply_markup=register_button()
-        )
+        if response.json()['status']:
+            update.message.reply_text(
+                "Login",reply_markup=login_button()
+            )
+        else:
+            update.message.reply_text(
+                "Register",reply_markup=register_button()
+            )
+    except:
+        update.message.reply_text("Botda xatolik yuz berdi!")
