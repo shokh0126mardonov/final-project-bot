@@ -12,7 +12,7 @@ def start_bot(update:Update,context:CallbackContext):
 
     response = requests.get(url=Register_url,params={"chat_id":chat_id})
 
-    if response.json()['exists']:
+    if response.json()['status']:
         update.message.reply_text(
             "Login",reply_markup=login_button()
         )
