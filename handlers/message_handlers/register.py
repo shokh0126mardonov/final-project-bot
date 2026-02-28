@@ -58,10 +58,9 @@ def get_phone_number(update:Update,context:CallbackContext):
 def get_avatar_image(update: Update, context: CallbackContext):
 
     file_id = update.message.photo[-1].file_id
-    file = context.bot.get_file(file_id)
-    photo_url = file.file_path
+    
 
-    context.user_data['photo_url'] = photo_url
+    context.user_data['file_id'] = file_id
 
     caption = (
     "📋 <b>Ma'lumotlaringizni tasdiqlang</b>\n\n"
@@ -91,27 +90,29 @@ def confirm_data(update: Update, context: CallbackContext):
             "username" :update.effective_user.username,
             "first_name":  context.user_data['first_name'],
             "last_name" : context.user_data['last_name'],
-            "contact": context.user_data['contact'],
-            "photo_url":context.user_data['photo_url']
+            "phone_number": context.user_data['contact'],
+            "avatar":context.user_data['file_id']
             }
 
         
 
-        response = requests.post(
+        request = requests.post(
             settings.Register_url,
-            data=data,
+            json=data,
             timeout=5
         )
-        query.edit_message_caption(
-        caption=(
-            "✅ <b>Ma'lumotlaringiz tasdiqlandi!</b>\n\n"
-            "Ro‘yxatdan o‘tish muvaffaqiyatli yakunlandi 🎉"
-            ),
-            parse_mode="HTML"
-        )
 
-        context.user_data.clear()
-        return ConversationHandler.END
+        if request.status_code == 200:
+            query.edit_message_caption(
+            caption=(
+                "✅ <b>Ma'lumotlaringiz tasdiqlandi!</b>\n\n"
+                "Ro‘yxatdan o‘tish muvaffaqiyatli yakunlandi 🎉"
+                ),
+                parse_mode="HTML"
+            )
+
+            context.user_data.clear()
+            return ConversationHandler.END
 
     query.edit_message_caption(
     caption=(
