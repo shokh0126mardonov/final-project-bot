@@ -3,7 +3,7 @@ import requests
 from telegram import Update
 from telegram.ext import CallbackContext
 
-from handlers.buttons.auth_buttons import register_button,login_button
+from handlers.buttons.auth_buttons import register_button
 from utils import settings
 
 
@@ -14,10 +14,8 @@ def start_bot(update:Update,context:CallbackContext):
 
         if response["status"]:
             update.message.reply_html(
-            "🎉 <b>Xush kelibsiz!</b>\n\n"
-            "Profilingiz tizimda mavjud.\n"
-            "Hisobingizga kirish uchun quyidagi <b>Login</b> tugmasidan foydalaning 👇",
-            reply_markup=login_button()
+            "🔐 Hisobingiz tayyor.\n"
+            "Davom etish: <b>/login</b>"
         )
         else:
             update.message.reply_html(

@@ -8,11 +8,11 @@ def register_button():
     return InlineKeyboardMarkup(keyboard)
 
 
-def login_button():
-    keyboard = [
-        [InlineKeyboardButton(text="🔐 Tizimga kirish", callback_data="login_page")]
-    ]
-    return InlineKeyboardMarkup(keyboard)
+# def login_button():
+#     keyboard = [
+#         [InlineKeyboardButton(text="🔐 Tizimga kirish", callback_data="login_page")]
+#     ]
+#     return InlineKeyboardMarkup(keyboard)
 
 
 def send_contact():
