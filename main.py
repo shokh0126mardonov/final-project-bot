@@ -13,7 +13,8 @@ from handlers.message_handlers import (
     get_avatar_image,
     get_full_name,
     get_phone_number,
-    confirm_data
+    confirm_data,
+    login_page
 )
 from utils import settings, RegisterStep
 
@@ -24,6 +25,7 @@ def main():
 
     dispatcher.add_handler(CommandHandler("start", start_bot))
     dispatcher.add_handler(CommandHandler("help", help_bot))
+    dispatcher.add_handler(CallbackQueryHandler(login_page,pattern=r"^login_page$"))
 
 
     register = ConversationHandler(
