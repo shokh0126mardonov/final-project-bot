@@ -7,14 +7,14 @@ from telegram.ext import (
     CallbackQueryHandler,
 )
 
-from handlers.command_handlers import start_bot,help_bot
+from handlers.command_handlers import start_bot, help_bot
 from handlers.message_handlers import (
     register_handler,
     get_avatar_image,
     get_full_name,
     get_phone_number,
     confirm_data,
-    login_page
+    login_page,
 )
 from utils import settings, RegisterStep
 
@@ -27,8 +27,7 @@ def main():
     dispatcher.add_handler(CommandHandler("help", help_bot))
     dispatcher.add_handler(CommandHandler("login", login_page))
 
-    dispatcher.add_handler(CallbackQueryHandler(login_page,pattern=r"^login_page$"))
-
+    dispatcher.add_handler(CallbackQueryHandler(login_page, pattern=r"^login_page$"))
 
     register = ConversationHandler(
         entry_points=[
@@ -41,13 +40,11 @@ def main():
             RegisterStep.phone_number: [
                 MessageHandler(Filters.contact, get_phone_number)
             ],
-            RegisterStep.avatar: [
-                MessageHandler(Filters.photo, get_avatar_image)
-            ],
+            RegisterStep.avatar: [MessageHandler(Filters.photo, get_avatar_image)],
             RegisterStep.confirm: [
                 CallbackQueryHandler(confirm_data, pattern=r"^confirm_")
-            ]
-                    },
+            ],
+        },
         fallbacks=[],
     )
 
