@@ -24,7 +24,7 @@ def main():
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start_bot))
-    dispatcher.add_handler(CommandHandler("help", help_bot))
+    dispatcher.add_handler(CommandHandler("help", start_bot))
     dispatcher.add_handler(CommandHandler("login", login_page))
 
     dispatcher.add_handler(CallbackQueryHandler(login_page, pattern=r"^login_page$"))
