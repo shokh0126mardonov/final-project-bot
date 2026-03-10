@@ -27,7 +27,7 @@ def main():
     dispatcher.add_handler(CommandHandler("help", start_bot))
     dispatcher.add_handler(CommandHandler("login", login_page))
 
-    dispatcher.add_handler(CallbackQueryHandler(login_page, pattern=r"^login_page$"))
+    # dispatcher.add_handler(CallbackQueryHandler(login_page, pattern=r"^login_page$"))
 
     register = ConversationHandler(
         entry_points=[
